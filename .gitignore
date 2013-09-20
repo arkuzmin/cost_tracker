@@ -1,0 +1,5 @@
+*.war
+*.class
+*.zip
+.metadata
+/bin
