@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="306.9609375" prefWidth="429.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.arkuzmin.costtracker.controller.CostTrackerMainController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Button fx:id="newAgent" mnemonicParsing="false" onAction="#addAgent" prefHeight="63.480941314697276" prefWidth="95.0" text="Добавить" AnchorPane.bottomAnchor="121.74" AnchorPane.leftAnchor="293.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="121.74" />
+    <TextField fx:id="agentName" alignment="CENTER" layoutX="15.0" layoutY="122.0" prefHeight="64.0" prefWidth="255.0" promptText="Имя агента" />
+  </children>
+</AnchorPane>

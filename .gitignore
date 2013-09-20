@@ -3,3 +3,5 @@
 *.zip
 .metadata
 /bin
+
+/build
