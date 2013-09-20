@@ -41,4 +41,8 @@ public class Category {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
+	
+	public String toString() {
+		return name;
+	}
 }

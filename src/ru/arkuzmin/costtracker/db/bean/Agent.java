@@ -35,4 +35,8 @@ public class Agent {
 	public void update(Agent agent) {
 		this.name = agent.name;
 	}
+	
+	public String toString() {
+		return name;
+	}
 }
