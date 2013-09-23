@@ -45,4 +45,9 @@ public class Category {
 	public String toString() {
 		return name;
 	}
+	
+	public void update(Category cat) {
+		this.name = cat.getName();
+		this.desc = cat.getDesc();
+	}
 }

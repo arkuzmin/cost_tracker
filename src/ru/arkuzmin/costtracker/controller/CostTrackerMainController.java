@@ -2,6 +2,7 @@ package ru.arkuzmin.costtracker.controller;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -67,6 +68,54 @@ public class CostTrackerMainController implements Initializable {
 	@FXML
 	Button deleteAgent;
 	
+	/** CATS */
+	@FXML 
+	TextField catName;
+	@FXML
+	TextArea catDesc;
+	@FXML
+	Button addNewCategory;
+	@FXML
+	TableView<Category> catTable;
+	@FXML
+	TableColumn<Category, String> catNameCol;
+	@FXML
+	TableColumn<Category, String> catDescCol;
+	@FXML
+	Button deleteCat;
+	
+	
+	private void initCatsTable() {
+		CategoryService service = getCatService();
+		List<Category> list = service.getAllCats();
+		ObservableList<Category> content = FXCollections.observableList(list);
+		catTable.setItems(content);
+		catTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		catNameCol.setCellValueFactory(new PropertyValueFactory<Category, String>("name"));
+		catDescCol.setCellValueFactory(new PropertyValueFactory<Category, String>("desc"));
+	}
+	
+	public void deleteCats() {
+		CategoryService service = getCatService();
+		List<Category> list = catTable.getSelectionModel().getSelectedItems();
+		for (Category cat : list) {
+			service.deleteCategory(cat);
+		}
+		
+		initCategories();
+		initCatsTable();
+	}
+	
+	public void addCategory() {
+		CategoryService service = getCatService();
+		Category cat = new Category();
+		cat.setName(catName.getText());
+		cat.setDesc(catName.getText());
+		service.addCategory(cat);
+		
+		initCategories();
+		initCatsTable();
+	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -74,6 +123,7 @@ public class CostTrackerMainController implements Initializable {
 		initAgents();
 		initCategories();
 		initAgentsTable();
+		initCatsTable();
 	}
 	
 	public void deleteAgents() {
@@ -105,7 +155,7 @@ public class CostTrackerMainController implements Initializable {
 	}
 	
 	private void initAgents() {
-		costAgent.setValue(null);
+		costAgent.getItems().clear();
 		AgentService service = getAgentService();
 		List<Agent> list = service.getAllAgents();
 		ObservableList<Agent> content = FXCollections.observableList(list);
@@ -116,7 +166,7 @@ public class CostTrackerMainController implements Initializable {
 	}
 	
 	private void initCategories() {
-		costCat.setValue(null);
+		costCat.getItems().clear();
 		CategoryService service = getCatService();
 		List<Category> list = service.getAllCats();
 		ObservableList<Category> content = FXCollections.observableList(list);
