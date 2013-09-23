@@ -88,6 +88,11 @@ public class Cost {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+	
+	public void setAmount(String amount) {
+		Double am = Double.parseDouble(amount);
+		this.amount = am;
+	}
 
 	public Date getDate() {
 		return date;
@@ -95,5 +100,13 @@ public class Cost {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	public void update(Cost cost) {
+		this.agent = cost.getAgent();
+		this.category = cost.getCategory();
+		this.name = cost.getName();
+		this.desc = cost.getDesc();
+		this.amount = cost.getAmount();
 	}
 }

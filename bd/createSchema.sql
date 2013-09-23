@@ -1,6 +1,5 @@
 create schema costtracker;
 
-
 create table costtracker.agent (
 	agent_id int not null auto_increment,
 	agent_name varchar(200),
@@ -26,8 +25,8 @@ create table costtracker.cost (
 	cost_dt timestamp default current_timestamp,
 
 	primary key(cost_id),
-	foreign key(cost_cat) references costtracker.agent(agent_id),
-	foreign key(cost_agent) references costtracker.category(cat_id)
+	foreign key(cost_agent) references costtracker.agent(agent_id),
+	foreign key(cost_cat) references costtracker.category(cat_id)
 );
 
 -- drop schema costtracker;
