@@ -2,7 +2,6 @@ package ru.arkuzmin.costtracker.controller;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
