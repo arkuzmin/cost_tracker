@@ -1,4 +1,4 @@
-package ru.arkuzmin.costtracker.view;
+package ru.arkuzmin.costtracker.controller;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,11 +17,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("CostTrackerMain.fxml"));
+            AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("/ru/arkuzmin/costtracker/view/fxml/CostTrackerMain.fxml"));
             Scene scene = new Scene(page);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Учет затрат 1.0");
-            primaryStage.setResizable(false);
+            primaryStage.setResizable(true);
             primaryStage.show();
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
