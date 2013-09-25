@@ -14,17 +14,17 @@
 .common-text {
 	-fx-font-size: 14pt;
 	-fx-font-family: "Tahoma";
-	-fx-font-weight: normal;
-	-fx-fill: black;
+	-fx-font-weight: bold;
+	-fx-fill: white;
 	-fx-smooth: true ;
 	-fx-font-smoothing-type: lcd;
+	-fx-stroke-type:  outside ;
+	-fx-stroke-width: 0.6;
+	-fx-stroke: darkslategray ;
 }
 
 .selected-text {
-	-fx-stroke-borders: mediumspringgreen  ;
-	-fx-stroke-type: centered  ;
-	-fx-stroke-width: 0.8;
-	-fx-stroke: mediumspringgreen ;
+	-fx-stroke-borders: dodgerblue  ;
 	-fx-font-weight: bold;
-
+	-fx-fill: springgreen ;
 }
