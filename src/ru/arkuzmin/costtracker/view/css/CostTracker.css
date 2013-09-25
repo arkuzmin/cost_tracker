@@ -1,6 +1,30 @@
 .root-pane {
-	-fx-font-size: 14pt;
-	-fx-font-family: "Tahoma";
-	-fx-background-color: rgb(203,231,245);
+	-fx-background-color: white;
 }
 
+.title {
+	-fx-font-size: 20pt;
+	-fx-font-family: "Tahoma";
+	-fx-font-weight: normal;
+	-fx-fill: dodgerblue;
+	-fx-smooth: true ;
+	-fx-font-smoothing-type: lcd;
+}
+
+.common-text {
+	-fx-font-size: 14pt;
+	-fx-font-family: "Tahoma";
+	-fx-font-weight: normal;
+	-fx-fill: black;
+	-fx-smooth: true ;
+	-fx-font-smoothing-type: lcd;
+}
+
+.selected-text {
+	-fx-stroke-borders: mediumspringgreen  ;
+	-fx-stroke-type: centered  ;
+	-fx-stroke-width: 0.8;
+	-fx-stroke: mediumspringgreen ;
+	-fx-font-weight: bold;
+
+}
