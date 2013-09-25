@@ -9,19 +9,36 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class CostTrackerMainController implements Initializable {
 
+	/** MENU */
+	@FXML 
+	ImageView addCostImg;
+	@FXML
+	ImageView editCostsImg;
+	
+	
 	@FXML
 	Label addCostLbl;
 	@FXML
 	Label editCostLbl;
 	
+	
+	private void initMenu() {
+		addCostImg.setImage(new Image("/ru/arkuzmin/costtracker/view/img/add0.png"));
+		editCostsImg.setImage(new Image("/ru/arkuzmin/costtracker/view/img/edit0.png"));
+	}
+	
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		initMenu();
 	}
 	
 	public void addCost() throws IOException {
@@ -46,6 +63,24 @@ public class CostTrackerMainController implements Initializable {
 	    stage.show();
 	}
 	
+	private void changeImg(ImageView img, String url) {
+		img.setImage(new Image(url));
+	}
 	
+	public void changeEditInImg() {
+		changeImg(editCostsImg, "/ru/arkuzmin/costtracker/view/img/edit1.png");
+	}
+	
+	public void changeEditOutImg() {
+		changeImg(editCostsImg, "/ru/arkuzmin/costtracker/view/img/edit0.png");
+	}
+	
+	public void changeAddInImg() {
+		changeImg(addCostImg, "/ru/arkuzmin/costtracker/view/img/add1.png");
+	}
+	
+	public void changeAddOutImg() {
+		changeImg(addCostImg, "/ru/arkuzmin/costtracker/view/img/add0.png");
+	}
 
 }

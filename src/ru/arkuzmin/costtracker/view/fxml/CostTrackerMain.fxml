@@ -18,16 +18,16 @@
       <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
           <children>
-            <GridPane gridLinesVisible="true" layoutX="15.0" layoutY="76.0" prefHeight="170.0" prefWidth="300.0">
+            <GridPane gridLinesVisible="false" layoutX="15.0" layoutY="76.0" prefHeight="170.0" prefWidth="300.0">
               <children>
                 <Label fx:id="addCostLbl" onMouseClicked="#addCost" text="Новый расход" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                 <Label fx:id="editCostLbl" onMouseClicked="#editCost" text="Поиск / Редактирование расходов" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Label text="Агенты" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label text="Категории" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <ImageView fitHeight="50" fitWidth="50" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <ImageView fitHeight="40" fitWidth="50" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <ImageView fitHeight="40" fitWidth="50" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <ImageView fitHeight="40" fitWidth="50" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <ImageView fx:id="addCostImg" fitHeight="50.0" fitWidth="50.0" onMouseEntered="#changeAddInImg" onMouseExited="#changeAddOutImg" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <ImageView fx:id="editCostsImg" fitHeight="40.0" fitWidth="50.0" onMouseEntered="#changeEditInImg" onMouseExited="#changeEditOutImg" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="3" />
               </children>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />

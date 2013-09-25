@@ -21,7 +21,7 @@ public class Main extends Application {
             Scene scene = new Scene(page);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Учет затрат 1.0");
-            primaryStage.setResizable(true);
+            primaryStage.setResizable(false);
             primaryStage.show();
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
