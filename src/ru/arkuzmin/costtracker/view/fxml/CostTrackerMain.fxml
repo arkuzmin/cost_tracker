@@ -21,18 +21,18 @@
           <children>
             <GridPane gridLinesVisible="false" layoutX="15.0" layoutY="76.0" prefHeight="170.0" prefWidth="300.0">
               <children>
-                <ImageView fx:id="addCostImg" fitHeight="40.0" fitWidth="50.0" onMouseEntered="#changeAddInImg" onMouseExited="#changeAddOutImg" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <ImageView fx:id="editCostsImg" fitHeight="40.0" fitWidth="50.0" onMouseEntered="#changeEditInImg" onMouseExited="#changeEditOutImg" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <ImageView fx:id="addCostImg" fitHeight="40.0" fitWidth="40" onMouseEntered="#changeAddInImg" onMouseExited="#changeAddOutImg" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <ImageView fx:id="editCostsImg" fitHeight="40.0" fitWidth="40" onMouseEntered="#changeEditInImg" onMouseExited="#changeEditOutImg" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <ImageView fitHeight="40.0" fitWidth="40" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <ImageView fitHeight="40.0" fitWidth="40" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="3" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Новый расход" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Поиск / редактирование расходов" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Агенты" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text, selected-text" text="Категории" GridPane.columnIndex="1" GridPane.rowIndex="3" />
               </children>
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="40" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="260" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />

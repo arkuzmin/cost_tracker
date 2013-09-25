@@ -20,7 +20,7 @@ public class Main extends Application {
             AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("/ru/arkuzmin/costtracker/view/fxml/CostTrackerMain.fxml"));
             Scene scene = new Scene(page);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Ó÷åò çàòðàò 1.0");
+            primaryStage.setTitle("Ð£Ñ‡ÐµÑ‚ Ð·Ð°Ñ‚Ñ€Ð°Ñ‚ 1.0");
             primaryStage.setResizable(false);
             primaryStage.show();
         } catch (Exception ex) {
