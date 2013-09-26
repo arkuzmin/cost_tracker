@@ -9,6 +9,7 @@ import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import ru.arkuzmin.costtracker.controller.utils.ControllerUtils;
@@ -36,7 +37,7 @@ public class AgentPieChartController implements Initializable {
 	DatePicker endDP;
 	
 	@FXML
-	ChoiceBox<Agent> agents;
+	ComboBox<Agent> agents;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

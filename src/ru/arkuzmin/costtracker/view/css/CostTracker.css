@@ -2,6 +2,12 @@
 	-fx-background-color: white;
 }
 
+.pane {
+	-fx-background-color: white;
+	-fx-border-color: darkgrey;
+	-fx-border-width: 1;
+}
+
 .title {
 	-fx-font-size: 22pt;
 	-fx-font-family: "Helvetica Neue Ultra Light";
@@ -9,7 +15,7 @@
 	-fx-fill: dodgerblue;
 	-fx-smooth: true ;
 	-fx-font-smoothing-type: lcd;
-	-fx-underline: true;
+
 }
 
 .common-text {
@@ -35,3 +41,40 @@
     -fx-vgap: 10;
 }
 
+.button {
+	-fx-background-color: white;
+	-fx-border-color: black;
+	-fx-border-width: 1;
+}
+
+.text-field {
+	-fx-background-color: white;
+	-fx-border-color: black;
+	-fx-border-width: 1;
+}
+
+.combo-box {
+	-fx-background-color: white;
+	-fx-border-color: black;
+	-fx-border-width: 1;
+}
+
+.combo-box-base .arrow-button {
+    -fx-background-color: white;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 5 5 0, 0 4 4 0, 0 3 3 0;
+    -fx-padding: 0.5em 0.416667em 0.5em 0.416667em; /* 6 5 6 5  */
+}
+
+.combo-box-base .arrow {
+    -fx-background-insets: 1 0 -1 0, 0;
+    -fx-background-color: black;
+    -fx-padding: 0.166667em 0.333333em 0.166667em 0.333333em; /* 2 4 2 4 */
+    -fx-shape: "M 0 0 h 7 l -3.5 4 z";
+}
+
+.text-area {
+	-fx-background-color: white;
+	-fx-border-color: black;
+	-fx-border-width: 1;
+}

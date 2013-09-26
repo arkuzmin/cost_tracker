@@ -83,7 +83,6 @@ public class CostServiceImpl implements CostService {
 		em.close();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cost> getAllCostsByAgent(Agent agent, Date bDt, Date eDt) {
 		EntityManager em = factory.createEntityManager();
