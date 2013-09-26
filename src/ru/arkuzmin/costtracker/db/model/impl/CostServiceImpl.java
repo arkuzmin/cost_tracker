@@ -14,10 +14,11 @@ import ru.arkuzmin.costtracker.db.bean.Cost;
 import ru.arkuzmin.costtracker.db.model.CostService;
 
 public class CostServiceImpl implements CostService {
-
 	private static EntityManagerFactory factory;
 	
 	private static final String GET_ALL_COSTS = "select c from Cost c";
+	
+	private static final String GET_ALL_COSTS_BY_AGENT = "Cost.getAllByAgent";
 	
 	static {
 		factory = Persistence.createEntityManagerFactory(Globals.PERSISTENCE_UNIT_NAME);
@@ -79,5 +80,16 @@ public class CostServiceImpl implements CostService {
 		
 		em.getTransaction().commit();
 		em.close();
+	}
+
+	@Override
+	public List<Cost> getAllCostsByAgent(Agent agent) {
+		EntityManager em = factory.createEntityManager();
+		
+		Query q = em.createNamedQuery(GET_ALL_COSTS_BY_AGENT, Cost.class);
+		List<Cost> result = q.setParameter("agent", agent).getResultList();
+		
+		em.close();
+		return result;
 	}
 }

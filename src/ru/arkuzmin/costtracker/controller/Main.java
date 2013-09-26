@@ -2,11 +2,13 @@ package ru.arkuzmin.costtracker.controller;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -17,12 +19,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("/ru/arkuzmin/costtracker/view/fxml/CostTrackerMain.fxml"));
+        	primaryStage.initStyle(StageStyle.UNDECORATED);
+        	AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("/ru/arkuzmin/costtracker/view/fxml/chart/AgentPieChart.fxml"));
+           // AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("/ru/arkuzmin/costtracker/view/fxml/CostTrackerMain.fxml"));
             Scene scene = new Scene(page);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Учет затрат 1.0");
             primaryStage.setResizable(false);
             primaryStage.show();
+            
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

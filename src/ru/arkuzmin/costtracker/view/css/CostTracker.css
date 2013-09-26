@@ -3,28 +3,35 @@
 }
 
 .title {
-	-fx-font-size: 20pt;
-	-fx-font-family: "Tahoma";
+	-fx-font-size: 22pt;
+	-fx-font-family: "Helvetica Neue Ultra Light";
 	-fx-font-weight: normal;
 	-fx-fill: dodgerblue;
 	-fx-smooth: true ;
 	-fx-font-smoothing-type: lcd;
+	-fx-underline: true;
 }
 
 .common-text {
-	-fx-font-size: 14pt;
-	-fx-font-family: "Tahoma";
-	-fx-font-weight: bold;
-	-fx-fill: white;
+	-fx-font-size: 16pt;
+	-fx-font-family: "Helvetica Neue Ultra Light";
+	-fx-font-weight: normal;
+	-fx-fill: black;
 	-fx-smooth: true ;
 	-fx-font-smoothing-type: lcd;
-	-fx-stroke-type:  outside ;
-	-fx-stroke-width: 0.6;
-	-fx-stroke: darkslategray ;
 }
 
 .selected-text {
-	-fx-stroke-borders: dodgerblue  ;
 	-fx-font-weight: bold;
-	-fx-fill: springgreen ;
+	-fx-underline: true;
 }
+
+.grid {
+    -fx-background-color: white;
+    -fx-background-radius: 5.0;
+    -fx-background-insets: 0.0 5.0 0.0 5.0;
+    -fx-padding: 10;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+

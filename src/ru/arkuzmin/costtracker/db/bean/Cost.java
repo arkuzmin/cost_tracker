@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -14,8 +16,12 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="COST")
-public class Cost {
 
+@NamedQueries({
+	@NamedQuery(name="Cost.getAllByAgent",	query="select c from Cost c where c.agent = :agent")
+	})
+public class Cost {
+	
 	@Id
 	@Column(name="COST_ID")
 	private int id;
