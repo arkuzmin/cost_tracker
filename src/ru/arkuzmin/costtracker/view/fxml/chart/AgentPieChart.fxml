@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="450.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.arkuzmin.costtracker.controller.chart.AgentPieChartController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.arkuzmin.costtracker.controller.chart.AgentPieChartController">
   <!-- TODO Add Nodes -->
   <children>
     <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <bottom>
         <Pane prefHeight="50.0" prefWidth="700.0" styleClass="pane">
           <children>
-            <Text layoutX="14.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="key-text" text="Всего потрачено:" />
+            <Text fx:id="totalCaption" layoutX="14.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="key-text" text="Всего потрачено:" visible="false" />
             <Text fx:id="totalTxt" layoutX="141.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="value-text" text="" />
           </children>
         </Pane>
@@ -30,13 +30,13 @@
         </Pane>
       </center>
       <top>
-        <AnchorPane pickOnBounds="true" prefHeight="70.0" prefWidth="700.0">
+        <AnchorPane pickOnBounds="true" prefHeight="100.0" prefWidth="700.0">
           <children>
-            <Pane prefHeight="70.0" prefWidth="700.0" styleClass="pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane prefHeight="69.99990000000253" prefWidth="700.0" styleClass="pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <children>
                 <Text layoutX="13.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Расходы по категориям" />
                 <Button id="close" fx:id="closeBtn" layoutX="618.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" text="Закрыть" />
-                <GridPane fx:id="beginGrid" gridLinesVisible="false" layoutX="230.0" layoutY="40.0">
+                <GridPane fx:id="beginGrid" gridLinesVisible="false" layoutX="230.0" layoutY="65.0">
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   </columnConstraints>
@@ -44,7 +44,7 @@
                     <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
                   </rowConstraints>
                 </GridPane>
-                <GridPane fx:id="endGrid" gridLinesVisible="false" layoutX="368.0" layoutY="40.0">
+                <GridPane fx:id="endGrid" gridLinesVisible="false" layoutX="368.0" layoutY="65.0">
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   </columnConstraints>
@@ -52,14 +52,16 @@
                     <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
                   </rowConstraints>
                 </GridPane>
-                <Button fx:id="drawBtn" layoutX="606.0" layoutY="40.0" mnemonicParsing="false" onAction="#draw" text="Построить" />
-                <Text layoutX="342.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="по" />
-                <Text layoutX="204.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="с" />
-                <ComboBox fx:id="agents" layoutX="13.0" layoutY="40.0" prefHeight="23.0" prefWidth="140.0">
+                <Button fx:id="drawBtn" layoutX="606.0" layoutY="65.0" mnemonicParsing="false" onAction="#draw" text="Построить" />
+                <Text layoutX="342.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="по" />
+                <Text layoutX="204.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="с" />
+                <ComboBox fx:id="agents" layoutX="14.0" layoutY="56.0" prefHeight="23.0" prefWidth="140.0">
                   <items>
                     <FXCollections fx:factory="observableArrayList" />
                   </items>
                 </ComboBox>
+                <RadioButton layoutX="184.0" layoutY="48.0" mnemonicParsing="false" text="" />
+                <RadioButton layoutX="184.0" layoutY="67.0" mnemonicParsing="false" text="" />
               </children>
             </Pane>
           </children>

@@ -40,6 +40,8 @@ public class AgentPieChartController implements Initializable {
 	
 	@FXML 
 	Text totalTxt;
+	@FXML
+	Text totalCaption;
 	
 	@FXML
 	Text chartHelpTxt;
@@ -66,6 +68,8 @@ public class AgentPieChartController implements Initializable {
 		chart.getData().clear();
 		totalTxt.setText("");
 		chartHelpTxt.setVisible(true);
+		totalCaption.setVisible(false);
+		totalTxt.setText("");
 	}
 	
 	private void initChart() {
@@ -86,6 +90,7 @@ public class AgentPieChartController implements Initializable {
 			total += d.getPieValue();
 		}
 		
+		totalCaption.setVisible(true);
 		totalTxt.setText(String.valueOf(total) + Globals.RUB_SUFFIX);
 	}
 	
