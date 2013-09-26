@@ -1,5 +1,6 @@
 package ru.arkuzmin.costtracker.db.model.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -82,12 +83,16 @@ public class CostServiceImpl implements CostService {
 		em.close();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Cost> getAllCostsByAgent(Agent agent) {
+	public List<Cost> getAllCostsByAgent(Agent agent, Date bDt, Date eDt) {
 		EntityManager em = factory.createEntityManager();
 		
 		Query q = em.createNamedQuery(GET_ALL_COSTS_BY_AGENT, Cost.class);
-		List<Cost> result = q.setParameter("agent", agent).getResultList();
+		List<Cost> result = q.setParameter("agent", agent)
+							 .setParameter("bDt", bDt)
+							 .setParameter("eDt", eDt)
+							 .getResultList();
 		
 		em.close();
 		return result;

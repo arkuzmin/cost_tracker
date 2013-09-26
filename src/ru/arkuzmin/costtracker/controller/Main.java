@@ -19,7 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-        	primaryStage.initStyle(StageStyle.UNDECORATED);
+        	primaryStage.initStyle(StageStyle.DECORATED);
         	AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("/ru/arkuzmin/costtracker/view/fxml/chart/AgentPieChart.fxml"));
            // AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("/ru/arkuzmin/costtracker/view/fxml/CostTrackerMain.fxml"));
             Scene scene = new Scene(page);
