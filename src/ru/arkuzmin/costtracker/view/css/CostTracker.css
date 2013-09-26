@@ -5,12 +5,12 @@
 .pane {
 	-fx-background-color: white;
 	-fx-border-color: darkgrey;
-	-fx-border-width: 1;
+	-fx-border-width: 0.7;
 }
 
 .title {
-	-fx-font-size: 22pt;
-	-fx-font-family: "Helvetica Neue Ultra Light";
+	-fx-font-size: 24pt;
+	-fx-font-family: "Arial Narrow";
 	-fx-font-weight: normal;
 	-fx-fill: dodgerblue;
 	-fx-smooth: true ;
@@ -18,14 +18,43 @@
 
 }
 
+.chart-helper-txt {
+	-fx-font-size: 35pt;
+	-fx-font-family: "Arial Narrow";
+	-fx-font-weight: normal;
+	-fx-fill: darkgrey;
+	-fx-smooth: true ;
+	-fx-font-smoothing-type: lcd;
+
+}
+
 .common-text {
 	-fx-font-size: 16pt;
-	-fx-font-family: "Helvetica Neue Ultra Light";
+	-fx-font-family: "Arial Narrow";
 	-fx-font-weight: normal;
 	-fx-fill: black;
 	-fx-smooth: true ;
 	-fx-font-smoothing-type: lcd;
 }
+
+.key-text {
+	-fx-font-size: 18pt;
+	-fx-font-family: "Arial Narrow";
+	-fx-font-weight: normal;
+	-fx-fill: black;
+	-fx-smooth: true ;
+	-fx-font-smoothing-type: lcd;
+}
+
+.value-text {
+	-fx-font-size: 18pt;
+	-fx-font-family: "Arial Narrow";
+	-fx-font-weight: bold;
+	-fx-fill: black;
+	-fx-smooth: true ;
+	-fx-font-smoothing-type: lcd;
+}
+
 
 .selected-text {
 	-fx-font-weight: bold;

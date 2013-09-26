@@ -3,15 +3,17 @@ package ru.arkuzmin.costtracker.controller.chart;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import ru.arkuzmin.costtracker.common.Globals;
 import ru.arkuzmin.costtracker.controller.utils.ControllerUtils;
 import ru.arkuzmin.costtracker.db.bean.Agent;
 import ru.arkuzmin.costtracker.model.chart.PieChartUtils;
@@ -36,6 +38,12 @@ public class AgentPieChartController implements Initializable {
 	GridPane endGrid;
 	DatePicker endDP;
 	
+	@FXML 
+	Text totalTxt;
+	
+	@FXML
+	Text chartHelpTxt;
+	
 	@FXML
 	ComboBox<Agent> agents;
 	
@@ -54,14 +62,31 @@ public class AgentPieChartController implements Initializable {
 		stage.close();
 	}
 	
-	private void initChart() {
+	private void clearChartData() {
 		chart.getData().clear();
+		totalTxt.setText("");
+		chartHelpTxt.setVisible(true);
+	}
+	
+	private void initChart() {
+		clearChartData();
+		
+		ObservableList<PieChart.Data> data = PieChartUtils.createPieChartContentByAgent(agents.getValue(), beginDP.getSelectedDate(), endDP.getSelectedDate());
+		
+		chartHelpTxt.setVisible(false);
 		
 		chart.setAnimated(true);
-		chart.setData(PieChartUtils.createPieChartContentByAgent(agents.getValue(), beginDP.getSelectedDate(), endDP.getSelectedDate()));
+		chart.setData(data);
 		chart.setLabelLineLength(10);
 		chart.setLegendSide(Side.RIGHT);
 		chart.setTitle("Расходы для агента: " + agents.getValue().getName());
+	
+		double total = 0.0;
+		for (PieChart.Data d : data) {
+			total += d.getPieValue();
+		}
+		
+		totalTxt.setText(String.valueOf(total) + Globals.RUB_SUFFIX);
 	}
 	
 	public void draw() {
