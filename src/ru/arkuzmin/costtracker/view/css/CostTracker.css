@@ -98,5 +98,19 @@
 }
 
 
+/*
+ * BUTTON
+ */
+
+.button:focused {
+    -fx-background-color: white;
+    -fx-background-insets: -1.4, 0, 1, 2;
+    -fx-background-radius:  6.4, 5, 4, 3;
+}
+
+.button:hover {
+    -fx-background-color: dodgerblue;
+}
+
 
 

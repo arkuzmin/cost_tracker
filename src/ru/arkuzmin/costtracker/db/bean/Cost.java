@@ -19,6 +19,7 @@ import javax.persistence.TemporalType;
 
 @NamedQueries({
 	@NamedQuery(name="Cost.getAllByAgent",	query="select c from Cost c where c.agent = :agent and c.date >= :bDt and c.date <= :eDt")
+	
 	})
 public class Cost {
 	
