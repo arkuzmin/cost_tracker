@@ -84,7 +84,6 @@ public class CostsController implements Initializable {
 		costTable.setItems(tableContent);
 	}
 	
-	/** Открывает окно для редактирования выбранной затраты */
 	public void editCost() throws IOException {
 		Cost selectedCost = costTable.getSelectionModel().getSelectedItem();
 		

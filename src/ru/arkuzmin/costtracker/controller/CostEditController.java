@@ -55,8 +55,8 @@ public class CostEditController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		costDate = new DatePicker(Locale.getDefault());
 		ControllerUtils.initDatePicker(costDate, costDateGrid);
-		ControllerUtils.initAgents(costAgent);
-		ControllerUtils.initCategories(costCategory);
+		//ControllerUtils.initAgents(costAgent);
+		//ControllerUtils.initCategories(costCategory);
 	}
 	
 	private void initFields() {

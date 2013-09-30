@@ -44,8 +44,8 @@ public class NewCostController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		ControllerUtils.initAgents(costAgent);
-		ControllerUtils.initCategories(costCategory);
+		//ControllerUtils.initAgents(costAgent);
+		//ControllerUtils.initCategories(costCategory);
 		costDate = new DatePicker(Locale.getDefault());
 		ControllerUtils.initDatePicker(costDate, costDateGrid);
 	}
