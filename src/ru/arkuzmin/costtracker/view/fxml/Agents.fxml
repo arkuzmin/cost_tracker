@@ -1,8 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.arkuzmin.costtracker.controller.AgentsController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <BorderPane prefHeight="320.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <bottom>
+        <AnchorPane prefHeight="50.0" prefWidth="500.0">
+          <children>
+            <Button fx:id="removeAgentBtn" layoutX="340.0" layoutY="16.0" mnemonicParsing="false" onAction="#removeAgent" text="Удалить" />
+            <Button fx:id="editAgentBtn" layoutX="223.0" layoutY="16.0" mnemonicParsing="false" onAction="#editAgent" text="Редактировать" />
+            <Button fx:id="closeBtn" layoutX="418.0" layoutY="16.0" mnemonicParsing="false" onAction="#close" text="Закрыть" />
+          </children>
+        </AnchorPane>
+      </bottom>
+      <center>
+        <TableView fx:id="agentTable" prefHeight="200.0" prefWidth="200.0">
+          <columns>
+            <TableColumn prefWidth="75.0" text="Имя" fx:id="colName" />
+          </columns>
+        </TableView>
+      </center>
+      <top>
+        <AnchorPane prefHeight="84.0" prefWidth="500.0">
+          <children>
+            <Text layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Агенты" />
+            <Text layoutX="14.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Имя" />
+            <TextField fx:id="nameTxt" layoutX="50.0" layoutY="46.0" prefWidth="200.0" />
+            <Button id="addBtn" fx:id="addAgentBtn" layoutX="258.0" layoutY="47.0" mnemonicParsing="false" onAction="#addAgent" text="Добавить" />
+          </children>
+        </AnchorPane>
+      </top>
+    </BorderPane>
+  </children>
+  <stylesheets>
+    <URL value="@../css/CostTracker.css" />
+  </stylesheets>
 </AnchorPane>
-
