@@ -2,14 +2,12 @@ package ru.arkuzmin.costtracker.db.bean;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,11 +31,9 @@ public class Cost {
 	@Column(name="COST_DESC")
 	private String desc;
 	
-	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name="COST_CAT")
 	private Category category;
 	
-	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name="COST_AGENT")
 	private Agent agent;
 	
@@ -115,5 +111,6 @@ public class Cost {
 		this.name = cost.getName();
 		this.desc = cost.getDesc();
 		this.amount = cost.getAmount();
+		this.date = cost.getDate();
 	}
 }

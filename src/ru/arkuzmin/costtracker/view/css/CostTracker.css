@@ -133,3 +133,16 @@
 .table-view .column-header{
 	-fx-background-color: white;
 }
+
+.menu-text {
+	-fx-font-size: 16pt;
+	-fx-font-family: "Arial Narrow";
+	-fx-font-weight: normal;
+	-fx-fill: black;
+	-fx-smooth: true ;
+	-fx-font-smoothing-type: lcd;
+}
+	
+.menu-text:hover {
+	-fx-font-weight: bold;
+}

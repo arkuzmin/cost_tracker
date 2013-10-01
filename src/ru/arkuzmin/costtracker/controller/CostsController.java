@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -71,6 +72,8 @@ public class CostsController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		this.filter = new CostFilter();
 		initCostTable();
+		editBtn.setDisable(true);
+		deleteBtn.setDisable(true);
 	}
 
 	
@@ -91,6 +94,7 @@ public class CostsController implements Initializable {
 	}
 	
 	private void initCostTable() {
+		costTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		costColName.setCellValueFactory(new PropertyValueFactory<Cost, String>("name"));
 		costColAmount.setCellValueFactory(new PropertyValueFactory<Cost, Double>("amount"));
 		costColAgent.setCellValueFactory(new PropertyValueFactory<Cost, Agent>("agent"));
@@ -105,6 +109,9 @@ public class CostsController implements Initializable {
 		refreshCostTable();
 	}
 	
+	/** 
+	 * Обновляет содержимое таблицы расходов.
+	 */
 	public void refreshCostTable() {
 		costTable.getItems().clear();
 		
@@ -115,22 +122,29 @@ public class CostsController implements Initializable {
 		costTable.setItems(tableContent);
 	}
 
-	public void editCost() throws IOException {
+	/**
+	 * Открывает окно для редактирования выбранной затраты.
+	 */
+	public void editCost() {
 		Cost selectedCost = costTable.getSelectionModel().getSelectedItem();
 		
-		if (selectedCost != null) {
-			URL location = getClass().getResource("/ru/arkuzmin/costtracker/view/fxml/CostEdit.fxml");
-			FXMLLoader loader = new FXMLLoader(location);
-			
-			Stage stage = new Stage(StageStyle.UTILITY);
-			stage.setResizable(false);
-			stage.setScene(new Scene((AnchorPane) loader.load())); 
-			
-			
-			CostEditController editController = loader.<CostEditController>getController();
-			editController.initSelected(selectedCost, CostsController.this);
-			
-	        stage.show();
+		try {
+			if (selectedCost != null) {
+				URL location = getClass().getResource(Globals.FXML_EDIT_COST);
+				FXMLLoader loader = new FXMLLoader(location);
+				
+				Stage stage = new Stage(StageStyle.UTILITY);
+				stage.setResizable(false);
+				stage.setScene(new Scene((AnchorPane) loader.load())); 
+				stage.centerOnScreen();
+				
+				CostEditController editController = loader.<CostEditController>getController();
+				editController.initSelected(selectedCost, CostsController.this);
+				
+		        stage.show();
+			}
+		} catch (IOException e) {
+			logger.error("Невозможно открыть окно редактирования затраты", e);
 		}
 	}
 	
@@ -139,14 +153,19 @@ public class CostsController implements Initializable {
 	 * Удаляет выбранные записи.
 	 */
 	public void delete() {
-		
+		ObservableList<Cost> list = costTable.getSelectionModel().getSelectedItems();
+		CostService service = ServiceFactory.getCostService();
+		for (Cost cost : list) {
+			service.deleteCost(cost);
+		}
+		refreshCostTable();
 	}
 	
 	/** 
 	 * Открывает окно для редактирования выбранной записи.
 	 */
 	public void edit() {
-		
+		editCost();
 	}
 	
 	/** 
@@ -154,7 +173,7 @@ public class CostsController implements Initializable {
 	 */
 	public void setFilter() {
 		try {
-			URL location = getClass().getResource("/ru/arkuzmin/costtracker/view/fxml/CostsFilter.fxml");
+			URL location = getClass().getResource(Globals.FXML_COST_FILTER);
 			FXMLLoader loader = new FXMLLoader(location);
 	
 			Stage stage = new Stage(StageStyle.UTILITY);
@@ -177,5 +196,22 @@ public class CostsController implements Initializable {
 	 */
 	public void find() {
 		refreshCostTable();
+	}
+	
+	/** 
+	 * Корректировка доступности кнопок.
+	 */
+	public void correctBtns() {
+		ObservableList<Cost> list = costTable.getSelectionModel().getSelectedItems();
+		if (list.size() > 1) {
+			deleteBtn.setDisable(false);
+			editBtn.setDisable(true);
+		} else if (list.size() == 1) {
+			deleteBtn.setDisable(false);
+			editBtn.setDisable(false);
+		} else {
+			deleteBtn.setDisable(true);
+			editBtn.setDisable(true);
+		}
 	}
 }

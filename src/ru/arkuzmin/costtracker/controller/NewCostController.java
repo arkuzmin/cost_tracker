@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -27,9 +27,9 @@ public class NewCostController implements Initializable {
 	@FXML
 	TextArea costDesc;
 	@FXML
-	ChoiceBox<Agent> costAgent;
+	ComboBox<Agent> costAgent;
 	@FXML
-	ChoiceBox<Category> costCategory;
+	ComboBox<Category> costCategory;
 	@FXML 
 	TextField costAmount;
 	@FXML
@@ -44,8 +44,8 @@ public class NewCostController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//ControllerUtils.initAgents(costAgent);
-		//ControllerUtils.initCategories(costCategory);
+		ControllerUtils.initAgents(costAgent);
+		ControllerUtils.initCategories(costCategory);
 		costDate = new DatePicker(Locale.getDefault());
 		ControllerUtils.initDatePicker(costDate, costDateGrid);
 	}

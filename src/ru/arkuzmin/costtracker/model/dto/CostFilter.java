@@ -25,7 +25,7 @@ public class CostFilter {
 		this.name = null;
 		this.agent = null;
 		this.cat = null;
-		this.startDt = ControllerUtils.getOtherDate(-7);
+		this.startDt = ControllerUtils.getOtherDate(-30);
 		this.endDt = new Date();
 		this.amount = null;
 		this.listSize = ListSizes.HUNDRED;

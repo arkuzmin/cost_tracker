@@ -25,11 +25,14 @@ public class EMFSingleton {
 	}
 	
 	public static void closeEMF() {
-		if (factory != null && !factory.isOpen()) {
+		if (factory != null && factory.isOpen()) {
 			factory.close();
 		} else {
 			throw new IllegalStateException("Фабрика не была инициализирована или закрыта");
 		}
 	}
 	
+	public static boolean isOpened() {
+		return factory != null && factory.isOpen();
+	}
 }

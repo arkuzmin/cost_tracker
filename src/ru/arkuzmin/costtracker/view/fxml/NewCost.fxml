@@ -1,41 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.arkuzmin.costtracker.controller.NewCostController">
+<AnchorPane prefHeight="359.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.arkuzmin.costtracker.controller.NewCostController">
   <!-- TODO Add Nodes -->
   <children>
     <BorderPane prefHeight="195.0" prefWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <center>
         <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="643.0">
           <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Новый расход">
-              <font>
-                <Font name="Trebuchet MS" size="15.0" />
-              </font>
-            </Label>
             <Button id="addNewCost" layoutX="516.0" layoutY="321.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="120.0" text="Добавить" />
-            <ChoiceBox id="costCat" fx:id="costCategory" layoutX="115.0" layoutY="160.0" prefWidth="250.0">
-              <items>
-                <FXCollections fx:factory="observableArrayList" />
-              </items>
-            </ChoiceBox>
-            <ChoiceBox fx:id="costAgent" layoutX="115.0" layoutY="195.0" prefWidth="250.0">
-              <items>
-                <FXCollections fx:factory="observableArrayList" />
-              </items>
-            </ChoiceBox>
             <TextField fx:id="costAmount" layoutX="115.0" layoutY="259.0" prefHeight="27.0" prefWidth="172.0" promptText="Сумма" />
-            <Label layoutX="15.0" layoutY="63.0" text="Название" />
-            <Label layoutX="15.0" layoutY="118.0" text="Описание" />
-            <Label layoutX="15.0" layoutY="163.0" text="Категория" />
-            <Label layoutX="15.0" layoutY="198.0" text="Агент" />
-            <Label layoutX="15.0" layoutY="265.0" text="Сумма" />
             <TextArea fx:id="costDesc" layoutX="115.0" layoutY="106.0" prefHeight="40.0" prefWidth="512.0" promptText="Описание" text="" wrapText="true" />
             <GridPane fx:id="costDateGrid" gridLinesVisible="false" layoutX="115.0" layoutY="230.0" minHeight="17.0" prefHeight="22.0" prefWidth="250.0">
               <columnConstraints>
@@ -45,19 +26,39 @@
                 <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
-            <Label layoutX="14.0" layoutY="234.0" text="Дата" />
             <Button id="addNewCost" fx:id="closeBtn" layoutX="386.0" layoutY="321.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="120.0" text="Закрыть" />
             <TextArea fx:id="costName" layoutX="115.0" layoutY="51.0" prefHeight="40.0" prefWidth="512.0" promptText="Название" wrapText="true" />
+            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Новый расход" />
+            <Text layoutX="14.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Название" />
+            <Text layoutX="14.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Описание" />
+            <Text layoutX="14.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Категория" />
+            <Text layoutX="14.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Агент" />
+            <Text layoutX="14.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Дата" />
+            <Text layoutX="14.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Сумма" />
+            <ComboBox fx:id="costCategory" layoutX="115.0" layoutY="158.0" prefHeight="23.0" prefWidth="271.0">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Item 1" />
+                  <String fx:value="Item 2" />
+                  <String fx:value="Item 3" />
+                </FXCollections>
+              </items>
+            </ComboBox>
+            <ComboBox fx:id="costAgent" layoutX="115.0" layoutY="193.0" prefHeight="23.0" prefWidth="271.0">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Item 1" />
+                  <String fx:value="Item 2" />
+                  <String fx:value="Item 3" />
+                </FXCollections>
+              </items>
+            </ComboBox>
           </children>
         </AnchorPane>
       </center>
-      <top>
-        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
-          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Добавить расход" />
-          </children>
-        </AnchorPane>
-      </top>
     </BorderPane>
   </children>
+  <stylesheets>
+    <URL value="@../css/CostTracker.css" />
+  </stylesheets>
 </AnchorPane>
