@@ -7,10 +7,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.arkuzmin.costtracker.controller.CostsController">
+<AnchorPane prefHeight="500.0" prefWidth="830.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.arkuzmin.costtracker.controller.CostsController">
   <!-- TODO Add Nodes -->
   <children>
     <BorderPane prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <bottom>
+        <AnchorPane prefHeight="50.0" prefWidth="800.0">
+          <children>
+            <HBox layoutX="631.0" layoutY="14.0" prefHeight="30.0" prefWidth="185.0" spacing="15.0">
+              <children>
+                <Button fx:id="editBtn" mnemonicParsing="false" onAction="#edit" text="Редактировать" />
+                <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#delete" text="Удалить" />
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+      </bottom>
       <center>
         <TableView fx:id="costTable" prefHeight="370.0" prefWidth="800.0">
           <columns>
@@ -23,9 +35,12 @@
         </TableView>
       </center>
       <top>
-        <AnchorPane prefHeight="170.0" prefWidth="800.0">
+        <AnchorPane prefHeight="70.0" prefWidth="800.0">
           <children>
-            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Фильтр поиска по затратам" />
+            <Button fx:id="setFilterBtn" layoutX="443.0" layoutY="36.0" mnemonicParsing="false" onAction="#setFilter" text="Изменить фильтр" />
+            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Список расходов" />
+            <Text layoutX="14.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Записи отображаются в соответствии с заданным фильтром поиска" />
+            <Button fx:id="findBtn" layoutX="760.0" layoutY="35.0" mnemonicParsing="false" onAction="#find" text="Найти" />
           </children>
         </AnchorPane>
       </top>

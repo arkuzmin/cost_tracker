@@ -15,10 +15,12 @@ import javax.persistence.criteria.Root;
 
 import ru.arkuzmin.costtracker.common.EMFSingleton;
 import ru.arkuzmin.costtracker.common.Globals;
+import ru.arkuzmin.costtracker.common.ListSizes;
 import ru.arkuzmin.costtracker.db.bean.Agent;
 import ru.arkuzmin.costtracker.db.bean.Category;
 import ru.arkuzmin.costtracker.db.bean.Cost;
 import ru.arkuzmin.costtracker.db.model.CostService;
+import ru.arkuzmin.costtracker.model.dto.CostFilter;
 
 public class CostServiceImpl implements CostService {
 	
@@ -100,14 +102,12 @@ public class CostServiceImpl implements CostService {
 		return result;
 	}
 	
-	/** Возвращает список затрат с использованием фильтра поиска */
-	public List<Cost> getFilteredCosts(String name, 
-									   Agent agent, 
-									   Category cat, 
-									   Date startDt, 
-									   Date endDt, 
-									   Double amount,
-									   Integer listSize) {
+	/** 
+	 * Возвращает список затрат с использованием фильтра поиска.
+	 * @param filter - фильтр поиска
+	 * @return фильтрованный список результатов
+	 */
+	public List<Cost> getFilteredCosts(CostFilter filter) {
 		
 		EntityManager em = EMFSingleton.getEMF().createEntityManager();
 		
@@ -119,32 +119,32 @@ public class CostServiceImpl implements CostService {
 		
 		List<Predicate> criteria  = new ArrayList<Predicate>();
 		
-		if (name != null && !"".equals(name)) {
+		if (filter.getName() != null && !"".equals(filter.getName())) {
 			ParameterExpression<String> p = cb.parameter(String.class, "name");
 			criteria.add(cb.like(cost.<String>get("name"), p));
 		}
 		
-		if (agent != null && agent.getId() != Globals.FAKE_ID) {
+		if (filter.getAgent() != null && filter.getAgent().getId() != Globals.FAKE_ID) {
 			ParameterExpression<Agent> p = cb.parameter(Agent.class, "agent");
 			criteria.add(cb.equal(cost.get("agent"), p));
 		}
 		
-		if (cat != null && cat.getId() != Globals.FAKE_ID) {
+		if (filter.getCat() != null && filter.getCat().getId() != Globals.FAKE_ID) {
 			ParameterExpression<Category> p = cb.parameter(Category.class, "category");
 			criteria.add(cb.equal(cost.get("category"), p));
 		}
 		
-		if (startDt != null) {
+		if (filter.getStartDt() != null) {
 			ParameterExpression<Date> p = cb.parameter(Date.class, "stDate");
-			criteria.add(cb.lessThanOrEqualTo(cost.<Date>get("date"), p));
-		}
-		
-		if (endDt != null) {
-			ParameterExpression<Date> p = cb.parameter(Date.class, "endDate");
 			criteria.add(cb.greaterThanOrEqualTo(cost.<Date>get("date"), p));
 		}
 		
-		if (amount != null) {
+		if (filter.getEndDt() != null) {
+			ParameterExpression<Date> p = cb.parameter(Date.class, "endDate");
+			criteria.add(cb.lessThanOrEqualTo(cost.<Date>get("date"), p));
+		}
+		
+		if (filter.getAmount() != null) {
 			ParameterExpression<Double> p = cb.parameter(Double.class, "amount");
 			criteria.add(cb.equal(cost.get("amount"), p));
 		}
@@ -157,29 +157,29 @@ public class CostServiceImpl implements CostService {
 		}
 		
 		TypedQuery<Cost> q = em.createQuery(cq);
-		if (name != null && !"".equals(name)) {
-			q.setParameter("name", name);
+		if (filter.getName() != null && !"".equals(filter.getName())) {
+			q.setParameter("name", filter.getName());
 		}
-		if (agent != null && agent.getId() != Globals.FAKE_ID) {
-			q.setParameter("agent", agent);
+		if (filter.getAgent() != null && filter.getAgent().getId() != Globals.FAKE_ID) {
+			q.setParameter("agent", filter.getAgent());
 		}
-		if (cat != null && cat.getId() != Globals.FAKE_ID) {
-			q.setParameter("category", cat);
+		if (filter.getCat() != null && filter.getCat().getId() != Globals.FAKE_ID) {
+			q.setParameter("category", filter.getCat());
 		}
-		if (startDt != null) {
-			q.setParameter("stDate", startDt);
+		if (filter.getStartDt() != null) {
+			q.setParameter("stDate", filter.getStartDt());
 		}
-		if (endDt != null) {
-			q.setParameter("endDate", endDt);
+		if (filter.getEndDt() != null) {
+			q.setParameter("endDate", filter.getEndDt());
 		}
-		if (amount != null) {
-			q.setParameter("amount", amount);
+		if (filter.getAmount() != null) {
+			q.setParameter("amount", filter.getAmount());
 		}
 		
 		List<Cost> list = q.getResultList();
 		/** Возвращаем только нужное количество записей */
-		if (listSize != null) {
-			list = list.subList(0, listSize >= list.size() ? list.size() : listSize);
+		if (filter.getListSize() != null && !filter.getListSize().equals(ListSizes.ALL)) {
+			list = list.subList(0, filter.getListSize().getSize() >= list.size() ? list.size() : filter.getListSize().getSize());
 		}
 		
 		return list;

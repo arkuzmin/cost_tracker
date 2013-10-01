@@ -2,6 +2,8 @@ package ru.arkuzmin.costtracker.model.dto;
 
 import java.util.Date;
 
+import ru.arkuzmin.costtracker.common.ListSizes;
+import ru.arkuzmin.costtracker.controller.utils.ControllerUtils;
 import ru.arkuzmin.costtracker.db.bean.Agent;
 import ru.arkuzmin.costtracker.db.bean.Category;
 
@@ -13,7 +15,22 @@ public class CostFilter {
 	private Date startDt;
 	private Date endDt;
 	private Double amount;
-	private Integer listSize;
+	private ListSizes listSize;
+	
+	public CostFilter() {
+		init();
+	}
+	
+	private void init() {
+		this.name = null;
+		this.agent = null;
+		this.cat = null;
+		this.startDt = ControllerUtils.getOtherDate(-7);
+		this.endDt = new Date();
+		this.amount = null;
+		this.listSize = ListSizes.HUNDRED;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -50,10 +67,10 @@ public class CostFilter {
 	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
-	public Integer getListSize() {
+	public ListSizes getListSize() {
 		return listSize;
 	}
-	public void setListSize(Integer listSize) {
+	public void setListSize(ListSizes listSize) {
 		this.listSize = listSize;
 	}
 }
