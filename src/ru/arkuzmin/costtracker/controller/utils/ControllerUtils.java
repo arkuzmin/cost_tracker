@@ -20,6 +20,7 @@ import ru.arkuzmin.costtracker.db.bean.Category;
 import ru.arkuzmin.costtracker.db.model.AgentService;
 import ru.arkuzmin.costtracker.db.model.CategoryService;
 import ru.arkuzmin.costtracker.db.model.ServiceFactory;
+import ru.arkuzmin.costtracker.model.dto.CostFilter;
 import eu.schudt.javafx.controls.calendar.DatePicker;
 
 /** 
@@ -168,5 +169,29 @@ public class ControllerUtils {
 			      };
 			  }
 		});
+	}
+	
+	/** 
+	 * Создает фильтр поиска по расходам на основе заданных параметров.
+	 * @param name - название
+	 * @param agent - агент
+	 * @param cat - категория
+	 * @param startDt - начальная дата
+	 * @param endDt - конечная дата
+	 * @param amount - сумма
+	 * @param size - размер возвращаемого списка
+	 * @return фильтр на основе заданных параметро поиска
+	 */
+	public static CostFilter createFilter (String name, Agent agent, Category cat, Date startDt, Date endDt, Double amount, ListSizes size) {
+		CostFilter filter = new CostFilter();
+		filter.setName(name);
+		filter.setAgent(agent);
+		filter.setCat(cat);
+		filter.setStartDt(startDt);
+		filter.setEndDt(endDt);
+		filter.setListSize(size);
+		filter.setAmount(amount);
+		
+		return filter;
 	}
 }

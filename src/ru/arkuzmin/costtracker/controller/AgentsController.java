@@ -8,9 +8,7 @@ import javafx.fxml.Initializable;
 public class AgentsController implements Initializable {
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+	public void initialize(URL arg0, ResourceBundle arg1) {	
 	}
 
 }

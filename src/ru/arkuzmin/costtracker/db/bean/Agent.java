@@ -4,10 +4,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="AGENT")
 public class Agent {
+	
+	@Transient
+	public static final String ID = "id";
+	@Transient
+	public static final String NAME = "name";
 	
 	@Id
 	@Column(name="AGENT_ID")

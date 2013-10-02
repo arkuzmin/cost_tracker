@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 
 public interface Globals {
 	
+	public static final Double UNDEFINED_DOUBLE = -999999.999999;
+	
 	public static final String PERSISTENCE_UNIT_NAME = "cost";
 
 	public static final String RUB_SUFFIX = " руб.";

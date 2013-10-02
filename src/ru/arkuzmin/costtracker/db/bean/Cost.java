@@ -6,20 +6,29 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="COST")
-
-@NamedQueries({
-	@NamedQuery(name="Cost.getAllByAgent",	query="select c from Cost c where c.agent = :agent and c.date >= :bDt and c.date <= :eDt")
-	
-	})
 public class Cost {
+	
+	@Transient
+	public static final String ID = "id";
+	@Transient
+	public static final String NAME = "name";
+	@Transient
+	public static final String DESC = "desc";
+	@Transient
+	public static final String CAT = "category";
+	@Transient
+	public static final String AGENT = "agent";
+	@Transient
+	public static final String AMOUNT = "amount";
+	@Transient
+	public static final String DATE = "date";
 	
 	@Id
 	@Column(name="COST_ID")

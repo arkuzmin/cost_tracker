@@ -8,11 +8,14 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import ru.arkuzmin.costtracker.common.ListSizes;
+import ru.arkuzmin.costtracker.controller.utils.ControllerUtils;
 import ru.arkuzmin.costtracker.db.bean.Agent;
 import ru.arkuzmin.costtracker.db.bean.Category;
 import ru.arkuzmin.costtracker.db.bean.Cost;
 import ru.arkuzmin.costtracker.db.model.CostService;
 import ru.arkuzmin.costtracker.db.model.ServiceFactory;
+import ru.arkuzmin.costtracker.model.dto.CostFilter;
 
 
 public class PieChartUtils {
@@ -21,7 +24,8 @@ public class PieChartUtils {
 		CostService cService = ServiceFactory.getCostService();
 		ObservableList<PieChart.Data> list = FXCollections.<PieChart.Data>observableArrayList();
 		
-		List<Cost> costList = cService.getAllCostsByAgent(agent, beginDT, endDT);
+		CostFilter filter = ControllerUtils.createFilter(null, agent, null, beginDT, endDT, null, ListSizes.ALL);
+		List<Cost> costList = cService.getFilteredCosts(filter);
 		
 		Map<String, Double> ccMap = new HashMap<String, Double>();
 		for (Cost cost : costList) {

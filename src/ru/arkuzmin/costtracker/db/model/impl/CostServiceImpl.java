@@ -26,8 +26,6 @@ public class CostServiceImpl implements CostService {
 	
 	private static final String GET_ALL_COSTS = "select c from Cost c";
 	
-	private static final String GET_ALL_COSTS_BY_AGENT = "Cost.getAllByAgent";
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cost> getAllCosts() {
@@ -85,28 +83,8 @@ public class CostServiceImpl implements CostService {
 		em.getTransaction().commit();
 		em.close();
 	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	/** Возвращает список всех затрат */
-	public List<Cost> getAllCostsByAgent(Agent agent, Date bDt, Date eDt) {
-		EntityManager em = EMFSingleton.getEMF().createEntityManager();
-		
-		Query q = em.createNamedQuery(GET_ALL_COSTS_BY_AGENT, Cost.class);
-		List<Cost> result = q.setParameter("agent", agent)
-							 .setParameter("bDt", bDt)
-							 .setParameter("eDt", eDt)
-							 .getResultList();
-		
-		em.close();
-		return result;
-	}
 	
-	/** 
-	 * Возвращает список затрат с использованием фильтра поиска.
-	 * @param filter - фильтр поиска
-	 * @return фильтрованный список результатов
-	 */
+	@Override
 	public List<Cost> getFilteredCosts(CostFilter filter) {
 		
 		EntityManager em = EMFSingleton.getEMF().createEntityManager();
@@ -115,38 +93,38 @@ public class CostServiceImpl implements CostService {
 		CriteriaQuery<Cost> cq = cb.createQuery(Cost.class);
 		Root<Cost> cost = cq.from(Cost.class);
 		cq.select(cost);
-		cq.orderBy(cb.desc(cost.get("date")));
+		cq.orderBy(cb.desc(cost.get(Cost.DATE)));
 		
 		List<Predicate> criteria  = new ArrayList<Predicate>();
 		
 		if (filter.getName() != null && !"".equals(filter.getName())) {
 			ParameterExpression<String> p = cb.parameter(String.class, "name");
-			criteria.add(cb.like(cost.<String>get("name"), p));
+			criteria.add(cb.like(cost.<String>get(Cost.NAME), p));
 		}
 		
 		if (filter.getAgent() != null && filter.getAgent().getId() != Globals.FAKE_ID) {
 			ParameterExpression<Agent> p = cb.parameter(Agent.class, "agent");
-			criteria.add(cb.equal(cost.get("agent"), p));
+			criteria.add(cb.equal(cost.get(Cost.AGENT), p));
 		}
 		
 		if (filter.getCat() != null && filter.getCat().getId() != Globals.FAKE_ID) {
 			ParameterExpression<Category> p = cb.parameter(Category.class, "category");
-			criteria.add(cb.equal(cost.get("category"), p));
+			criteria.add(cb.equal(cost.get(Cost.CAT), p));
 		}
 		
 		if (filter.getStartDt() != null) {
 			ParameterExpression<Date> p = cb.parameter(Date.class, "stDate");
-			criteria.add(cb.greaterThanOrEqualTo(cost.<Date>get("date"), p));
+			criteria.add(cb.greaterThanOrEqualTo(cost.<Date>get(Cost.DATE), p));
 		}
 		
 		if (filter.getEndDt() != null) {
 			ParameterExpression<Date> p = cb.parameter(Date.class, "endDate");
-			criteria.add(cb.lessThanOrEqualTo(cost.<Date>get("date"), p));
+			criteria.add(cb.lessThanOrEqualTo(cost.<Date>get(Cost.DATE), p));
 		}
 		
 		if (filter.getAmount() != null) {
 			ParameterExpression<Double> p = cb.parameter(Double.class, "amount");
-			criteria.add(cb.equal(cost.get("amount"), p));
+			criteria.add(cb.equal(cost.get(Cost.AMOUNT), p));
 		}
 		
 		
@@ -177,11 +155,89 @@ public class CostServiceImpl implements CostService {
 		}
 		
 		List<Cost> list = q.getResultList();
+		
 		/** Возвращаем только нужное количество записей */
 		if (filter.getListSize() != null && !filter.getListSize().equals(ListSizes.ALL)) {
 			list = list.subList(0, filter.getListSize().getSize() >= list.size() ? list.size() : filter.getListSize().getSize());
 		}
 		
+		em.close();
 		return list;
 	}
+
+	@Override
+	public Double getTotalCosts() {
+		Double result = Globals.UNDEFINED_DOUBLE;
+		EntityManager em = EMFSingleton.getEMF().createEntityManager();
+		
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Double> cq = cb.createQuery(Double.class);
+		
+		Root<Cost> cost = cq.from(Cost.class);
+		cq.select(cb.sum(cost.<Double>get(Cost.AMOUNT)));
+		
+		TypedQuery<Double> q = em.createQuery(cq);
+		result = q.getSingleResult();
+		
+		em.close();
+		return result;
+	}
+
+	@Override
+	public Date getDateOfFirstCost() {
+		Date result = null;
+		EntityManager em = EMFSingleton.getEMF().createEntityManager();
+		
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Date> cq = cb.createQuery(Date.class);
+		
+		Root<Cost> cost = cq.from(Cost.class);
+		cq.select(cb.least(cost.<Date>get(Cost.DATE)));
+		
+		TypedQuery<Date> q = em.createQuery(cq);
+		result = q.getSingleResult();
+		
+		em.close();
+		return result;
+	}
+
+	@Override
+	public Date getDateOfLastCost() {
+		Date result = null;
+		EntityManager em = EMFSingleton.getEMF().createEntityManager();
+		
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Date> cq = cb.createQuery(Date.class);
+		
+		Root<Cost> cost = cq.from(Cost.class);
+		cq.select(cb.greatest(cost.<Date>get(Cost.DATE)));
+		
+		TypedQuery<Date> q = em.createQuery(cq);
+		result = q.getSingleResult();
+		
+		em.close();
+		return result;
+	}
+
+	@Override
+	public List<Cost> getLargestCosts(ListSizes size) {
+		List<Cost> result = null;
+		EntityManager em = EMFSingleton.getEMF().createEntityManager();
+		
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Cost> cq = cb.createQuery(Cost.class);
+		
+		Root<Cost> cost = cq.from(Cost.class);
+		cq.select(cost).orderBy(cb.desc(cost.get(Cost.AMOUNT)));
+		
+		TypedQuery<Cost> q = em.createQuery(cq);
+		q.setMaxResults(size.getSize());
+		
+		result = q.getResultList();
+		
+		em.close();		
+		return result;
+	}
+	
+	
 }

@@ -4,10 +4,20 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="CATEGORY")
 public class Category {
+	
+	@Transient
+	public static final String ID = "id";
+	@Transient
+	public static final String NAME = "name";
+	@Transient
+	public static final String DESC = "desc";
+	
+	
 	@Id
 	@Column(name="CAT_ID")
 	private int id;
