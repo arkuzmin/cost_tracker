@@ -1,17 +1,25 @@
 /**************************BUTTONS******************************/
 /**************************COMMON***************************** */
 .button {
+	-fx-font-family: "Arial";
+	-fx-font-size: 14;
+	-fx-text-fill: black;
+	-fx-font-weight: normal;
 	-fx-background-color: transparent;
 }
 .button:focused {
     -fx-background-color: transparent;
 }
+.button:hover {
+	-fx-font-weight: bold;
+}
+
 /**************************ADD******************************** */
 .button-add {
-	-fx-graphic: url("add0.png");
+	-fx-graphic: url("add0btn.png");
 }
 .button-add:hover {
-    -fx-graphic: url("add1.png");
+    -fx-graphic: url("add1btn.png");
 }
 
 
