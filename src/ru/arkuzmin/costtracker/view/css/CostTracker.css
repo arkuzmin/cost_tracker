@@ -1,3 +1,22 @@
+/**************************BUTTONS******************************/
+/**************************COMMON***************************** */
+.button {
+	-fx-background-color: transparent;
+}
+.button:focused {
+    -fx-background-color: transparent;
+}
+/**************************ADD******************************** */
+.button-add {
+	-fx-graphic: url("add0.png");
+}
+.button-add:hover {
+    -fx-graphic: url("add1.png");
+}
+
+
+
+
 .root-pane {
 	-fx-background-color: white;
 }
@@ -70,7 +89,7 @@
     -fx-vgap: 10;
 }
 
-.table-view, .button, .text-field, .combo-box, .text-area  {
+.table-view, .text-field, .combo-box, .text-area  {
 	-fx-background-color: white;
 	-fx-border-color: black;
 	-fx-border-width: 1;
@@ -102,15 +121,6 @@
  * BUTTON
  */
 
-.button:focused {
-    -fx-background-color: white;
-    -fx-background-insets: -1.4, 0, 1, 2;
-    -fx-background-radius:  6.4, 5, 4, 3;
-}
-
-.button:hover {
-    -fx-background-color: dodgerblue;
-}
 
 
 /* This is the area behind the column headers. An ideal place to specify background

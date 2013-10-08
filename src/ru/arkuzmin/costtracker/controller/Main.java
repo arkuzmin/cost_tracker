@@ -16,6 +16,7 @@ public class Main extends Application {
 	private static final Logger logger = Logger.getLogger(Main.class);
 	
     public static void main(String[] args) {
+    	System.out.println(Main.class.getResource("/ru/arkuzmin/costtracker/view/img/add0.png").getFile());
         Application.launch(Main.class, (java.lang.String[])null);
     }
 

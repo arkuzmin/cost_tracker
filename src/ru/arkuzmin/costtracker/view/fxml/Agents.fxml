@@ -33,7 +33,7 @@
             <Text layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Агенты" />
             <Text layoutX="14.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Имя" />
             <TextField fx:id="nameTxt" layoutX="50.0" layoutY="46.0" prefWidth="200.0" />
-            <Button id="addBtn" fx:id="addAgentBtn" layoutX="258.0" layoutY="47.0" mnemonicParsing="false" onAction="#addAgent" text="Добавить" />
+            <Button id="addBtn" fx:id="addAgentBtn" layoutX="258.0" layoutY="47.0" mnemonicParsing="false" onAction="#addAgent" styleClass="button-add" text="Добавить" />
           </children>
         </AnchorPane>
       </top>
