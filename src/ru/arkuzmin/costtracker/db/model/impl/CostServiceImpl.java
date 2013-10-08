@@ -20,7 +20,10 @@ import ru.arkuzmin.costtracker.db.bean.Agent;
 import ru.arkuzmin.costtracker.db.bean.Category;
 import ru.arkuzmin.costtracker.db.bean.Cost;
 import ru.arkuzmin.costtracker.db.model.CostService;
+import ru.arkuzmin.costtracker.model.dto.AgentCostAmount;
+import ru.arkuzmin.costtracker.model.dto.CatCostAmount;
 import ru.arkuzmin.costtracker.model.dto.CostFilter;
+import ru.arkuzmin.costtracker.model.dto.DayCostAmount;
 
 public class CostServiceImpl implements CostService {
 	
@@ -238,6 +241,80 @@ public class CostServiceImpl implements CostService {
 		em.close();		
 		return result;
 	}
-	
-	
+
+	@Override
+	public List<CatCostAmount> getLargestCatCosts(ListSizes size) {
+		List<CatCostAmount> result = null;
+		
+		EntityManager em = EMFSingleton.getEMF().createEntityManager();
+		
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<CatCostAmount> c = cb.createQuery(CatCostAmount.class);
+		
+		Root<Cost> cost = c.from(Cost.class);
+		Root<Category> cat = c.from(Category.class);
+		
+		c.select(cb.construct(CatCostAmount.class, cat, cb.sum(cost.<Double>get(Cost.AMOUNT)).alias("sum")))
+		.where(cb.equal(cost.get(Cost.CAT), cat))
+		.groupBy(cost.get(Cost.CAT))
+		.orderBy(cb.desc(cb.literal("sum")));
+		
+		TypedQuery<CatCostAmount> q = em.createQuery(c);
+		q.setMaxResults(size.getSize());
+		
+		result = q.getResultList();
+		
+		em.close();
+		return result;
+	}
+
+	@Override
+	public List<AgentCostAmount> getLargetsAgentCosts(ListSizes size) {
+		List<AgentCostAmount> result = null;
+		
+		EntityManager em = EMFSingleton.getEMF().createEntityManager();
+		
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<AgentCostAmount> c = cb.createQuery(AgentCostAmount.class);
+		
+		Root<Cost> cost = c.from(Cost.class);
+		Root<Agent> agent = c.from(Agent.class);
+		
+		c.select(cb.construct(AgentCostAmount.class, agent, cb.sum(cost.<Double>get(Cost.AMOUNT)).alias("sum")))
+		.where(cb.equal(agent, cost.get(Cost.AGENT)))
+		.groupBy(cost.get(Cost.AGENT))
+		.orderBy(cb.desc(cb.literal("sum")));
+		
+		TypedQuery<AgentCostAmount> q = em.createQuery(c);
+		q.setMaxResults(size.getSize());
+		
+		result = q.getResultList();
+		
+		em.close();
+		return result;
+	}
+
+	@Override
+	public List<DayCostAmount> getLargestDayCosts(ListSizes size) {
+		List<DayCostAmount> result = null;
+		
+		EntityManager em = EMFSingleton.getEMF().createEntityManager();
+		
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<DayCostAmount> c = cb.createQuery(DayCostAmount.class);
+		
+		Root<Cost> cost = c.from(Cost.class);
+		
+		c.select(cb.construct(DayCostAmount.class, cost.get(Cost.DATE), cb.sum(cost.<Double>get(Cost.AMOUNT)).alias("sum")))
+		.groupBy(cost.get(Cost.DATE))
+		.orderBy(cb.asc(cb.literal("sum")));
+		
+		TypedQuery<DayCostAmount> q = em.createQuery(c);
+		q.setMaxResults(size.getSize());
+		
+		result = q.getResultList();
+		
+		em.close();
+		return result;
+	}
 }

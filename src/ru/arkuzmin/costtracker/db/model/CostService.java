@@ -5,7 +5,10 @@ import java.util.List;
 
 import ru.arkuzmin.costtracker.common.ListSizes;
 import ru.arkuzmin.costtracker.db.bean.Cost;
+import ru.arkuzmin.costtracker.model.dto.AgentCostAmount;
+import ru.arkuzmin.costtracker.model.dto.CatCostAmount;
 import ru.arkuzmin.costtracker.model.dto.CostFilter;
+import ru.arkuzmin.costtracker.model.dto.DayCostAmount;
 
 public interface CostService {
 		/** 
@@ -68,4 +71,26 @@ public interface CostService {
 		 * @return топ самых больших затрат
 		 */
 		public List<Cost> getLargestCosts(ListSizes size);
+		
+		/**
+		 * Возвращает топ категорий по затратам.
+		 * @param size - размер топа
+		 * @return топ самых затратных категорий
+		 */
+		public List<CatCostAmount> getLargestCatCosts(ListSizes size);
+		
+		/** 
+		 * Возвращает топ агентов по затратам.
+		 * @param size - размер топа
+		 * @return топ самых затратных агентов
+		 */
+		public List<AgentCostAmount> getLargetsAgentCosts(ListSizes size);
+		
+		/**
+		 * Возвращает топ дней по затратам.
+		 * @param size - размер топа
+		 * @return топ дней по затратам
+		 */
+		public List<DayCostAmount> getLargestDayCosts(ListSizes size);
+		
 }

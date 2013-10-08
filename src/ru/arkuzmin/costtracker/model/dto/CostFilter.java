@@ -7,7 +7,11 @@ import ru.arkuzmin.costtracker.controller.utils.ControllerUtils;
 import ru.arkuzmin.costtracker.db.bean.Agent;
 import ru.arkuzmin.costtracker.db.bean.Category;
 
-/** Фильтр поиска по всем расходам */
+/**
+ * Объект фильтра поиска по расходам.
+ * @author ArKuzmin
+ *
+ */
 public class CostFilter {
 	private String name;
 	private Agent agent;
