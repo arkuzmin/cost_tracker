@@ -1,33 +1,42 @@
 package ru.arkuzmin.costtracker.controller;
 
-import org.apache.log4j.Logger;
-
-import ru.arkuzmin.costtracker.common.EMFSingleton;
-import ru.arkuzmin.costtracker.common.Globals;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import org.apache.log4j.Logger;
+
+import ru.arkuzmin.costtracker.common.EMFSingleton;
+import ru.arkuzmin.costtracker.common.Globals;
 
 public class Main extends Application {
 
 	private static final Logger logger = Logger.getLogger(Main.class);
 	
     public static void main(String[] args) {
-    	System.out.println(Main.class.getResource("/ru/arkuzmin/costtracker/view/img/add0.png").getFile());
         Application.launch(Main.class, (java.lang.String[])null);
     }
 
     @Override
     public void start(Stage primaryStage) {
         try {
-        	primaryStage.initStyle(StageStyle.DECORATED);
+        	primaryStage.initStyle(StageStyle.TRANSPARENT);
             AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource(Globals.FXML_MAIN));
-            Scene scene = new Scene(page);
+        	Rectangle rect = new Rectangle(680,275);
+        	rect.setArcHeight(60.0);
+        	rect.setArcWidth(60.0);
+
+        	page.setClip(rect);
+            
+            Scene scene = new Scene(page, 680, 275);
+            scene.setFill(null);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Учет затрат 1.0");
             primaryStage.setResizable(false);
             primaryStage.show();
             
@@ -35,7 +44,6 @@ public class Main extends Application {
             logger.error("Невозможно запустить приложение", e);
         }
     }
-    
     
     @Override 
     public void stop() {

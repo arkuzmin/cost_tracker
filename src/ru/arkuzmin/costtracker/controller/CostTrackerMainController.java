@@ -30,15 +30,8 @@ public class CostTrackerMainController implements Initializable {
 	Label editCostLbl;
 	
 	
-	private void initMenu() {
-		addCostImg.setImage(new Image("/ru/arkuzmin/costtracker/view/img/add0.png"));
-		editCostsImg.setImage(new Image("/ru/arkuzmin/costtracker/view/img/edit0.png"));
-	}
-	
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		initMenu();
 	}
 	
 	public void addCost() throws IOException {

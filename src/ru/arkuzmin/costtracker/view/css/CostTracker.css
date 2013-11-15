@@ -3,9 +3,9 @@
 .button {
 	-fx-font-family: "Arial";
 	-fx-font-size: 14;
-	-fx-text-fill: black;
+	-fx-text-fill: white;
 	-fx-font-weight: normal;
-	-fx-background-color: transparent;
+	-fx-background-color: transparent ;
 }
 .button:focused {
     -fx-background-color: transparent;
@@ -14,19 +14,76 @@
 	-fx-font-weight: bold;
 }
 
-/**************************ADD******************************** */
-.button-add {
-	-fx-graphic: url("add0btn.png");
+.button-cost-add {
+	-fx-graphic: url("img/addCost0.png");
 }
-.button-add:hover {
-    -fx-graphic: url("add1btn.png");
+.button-cost-add:hover {
+    -fx-graphic: url("img/addCost1.png");
 }
 
+.button-cost-edit {
+	-fx-graphic: url("img/findCost0.png");
+}
+.button-cost-edit:hover {
+	-fx-graphic: url("img/findCost1.png");
+}
 
+.button-agent-add {
+	-fx-graphic: url("img/addUsr0.png");
+}
+.button-agent-add:hover {
+	-fx-graphic: url("img/addUsr1.png");
+}
+
+.button-cat-add {
+	-fx-graphic: url("img/addCat0.png");	
+}
+.button-cat-add:hover {
+	-fx-graphic: url("img/addCat1.png");
+}
+
+.button-close {
+	-fx-graphic: url("img/close0.png");	
+}
+.button-close:hover {
+	-fx-graphic: url("img/close1.png");	
+}
+
+.button-settings {
+	-fx-graphic: url("img/settings0.png");	
+}
+.button-settings:hover {
+	-fx-graphic: url("img/settings1.png");	
+}
+
+.button-agent-stat {
+	-fx-graphic: url("img/usrStat0.png");	
+}
+.button-agent-stat:hover {
+	-fx-graphic: url("img/usrStat1.png");	
+}
+
+.button-cat-stat {
+	-fx-graphic: url("img/catStat0.png");	
+}
+.button-cat-stat:hover {
+	-fx-graphic: url("img/catStat1.png");	
+}
+
+.button-stat {
+	-fx-graphic: url("img/stat0.png");	
+}
+.button-stat:hover {
+	-fx-graphic: url("img/stat1.png");	
+}
 
 
 .root-pane {
-	-fx-background-color: white;
+	-fx-background-radius: 30;
+	-fx-border-radius: 30;
+	-fx-border-color: black;
+	-fx-border-width: 1;
+	-fx-background-image: url("img/bg/bg5.png");
 }
 
 .pane {
@@ -37,9 +94,9 @@
 
 .title {
 	-fx-font-size: 24pt;
-	-fx-font-family: "Arial Narrow";
-	-fx-font-weight: normal;
-	-fx-fill: dodgerblue;
+	-fx-font-family: "Arial";
+	-fx-font-weight: bold;
+	-fx-fill: white;
 	-fx-smooth: true ;
 	-fx-font-smoothing-type: lcd;
 
@@ -89,9 +146,11 @@
 }
 
 .grid {
-    -fx-background-color: white;
-    -fx-background-radius: 5.0;
+    -fx-opacity: 1.0;
+    -fx-background-color: transparent ;
     -fx-background-insets: 0.0 5.0 0.0 5.0;
+    -fx-background-radius: 30;
+	-fx-border-radius: 30;
     -fx-padding: 10;
     -fx-hgap: 10;
     -fx-vgap: 10;
