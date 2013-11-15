@@ -1,0 +1,2 @@
+Добавить в ярлык для эклипса с javaFX 8 путь к vm:
+"K:\Eclipse Kepler\eclipse.exe" -vm "C:\Program Files\Java\jdk1.7.0_40\bin\javaw.exe"
