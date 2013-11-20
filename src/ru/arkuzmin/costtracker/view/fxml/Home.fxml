@@ -2,6 +2,8 @@
 
 <?import java.lang.*?>
 <?import java.net.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
@@ -21,7 +23,56 @@
                       <children>
                         <BorderPane prefHeight="200.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <center>
-                            <AnchorPane prefHeight="170.0" prefWidth="750.0" styleClass="pane" />
+                            <AnchorPane prefHeight="170.0" prefWidth="750.0" styleClass="pane">
+                              <children>
+                                <BorderPane prefHeight="169.0" prefWidth="749.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                  <center>
+                                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="359.0" prefWidth="650.0">
+                                      <children>
+                                        <Button id="addNewCost" layoutX="516.0" layoutY="321.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="120.0" text="Добавить" />
+                                        <TextField id="costAmount" layoutX="115.0" layoutY="259.0" prefHeight="27.0" prefWidth="172.0" promptText="Сумма" />
+                                        <TextArea id="costDesc" layoutX="115.0" layoutY="106.0" prefHeight="40.0" prefWidth="512.0" promptText="Описание" text="" wrapText="true" />
+                                        <GridPane id="costDateGrid" gridLinesVisible="false" layoutX="115.0" layoutY="230.0" minHeight="17.0" prefHeight="22.0" prefWidth="250.0">
+                                          <columnConstraints>
+                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
+                                          </columnConstraints>
+                                          <rowConstraints>
+                                            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                                          </rowConstraints>
+                                        </GridPane>
+                                        <Button id="addNewCost" layoutX="386.0" layoutY="321.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="120.0" text="Закрыть" />
+                                        <TextArea id="costName" layoutX="115.0" layoutY="51.0" prefHeight="40.0" prefWidth="512.0" promptText="Название" wrapText="true" />
+                                        <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Новый расход" />
+                                        <Text layoutX="14.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Название" />
+                                        <Text layoutX="14.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Описание" />
+                                        <Text layoutX="14.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Категория" />
+                                        <Text layoutX="14.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Агент" />
+                                        <Text layoutX="14.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Дата" />
+                                        <Text layoutX="14.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Сумма" />
+                                        <ComboBox id="costCategory" layoutX="115.0" layoutY="158.0" prefHeight="23.0" prefWidth="271.0">
+                                          <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                              <String fx:value="Item 1" />
+                                              <String fx:value="Item 2" />
+                                              <String fx:value="Item 3" />
+                                            </FXCollections>
+                                          </items>
+                                        </ComboBox>
+                                        <ComboBox id="costAgent" layoutX="115.0" layoutY="193.0" prefHeight="23.0" prefWidth="271.0">
+                                          <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                              <String fx:value="Item 1" />
+                                              <String fx:value="Item 2" />
+                                              <String fx:value="Item 3" />
+                                            </FXCollections>
+                                          </items>
+                                        </ComboBox>
+                                      </children>
+                                    </AnchorPane>
+                                  </center>
+                                </BorderPane>
+                              </children>
+                            </AnchorPane>
                           </center>
                           <top>
                             <AnchorPane prefHeight="30.0" prefWidth="200.0" styleClass="root-pane">
@@ -39,10 +90,31 @@
                           <center>
                             <AnchorPane prefHeight="170.0" prefWidth="200.0" styleClass="pane" />
                           </center>
+                          <left>
+                            <GridPane gridLinesVisible="false" prefHeight="170.0" prefWidth="320.0" styleClass="grid">
+                              <children>
+                                <Button mnemonicParsing="false" styleClass="button-agent-stat" text="Отчет по агентам" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <Button mnemonicParsing="false" styleClass="button-cat-stat" text="Отчет по категориям" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <Button mnemonicParsing="false" styleClass="button-stat" text="Статистика" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                              <stylesheets>
+                                <URL value="file:/D:/github/cost_tracker/src/ru/arkuzmin/costtracker/view/css/DatePicker.css" />
+                              </stylesheets>
+                            </GridPane>
+                          </left>
                           <top>
                             <AnchorPane prefHeight="30.0" prefWidth="200.0" styleClass="root-pane">
                               <children>
-                                <Text layoutX="14.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Отчеты" />
+                                <Text layoutX="14.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Отчеты" />
                               </children>
                             </AnchorPane>
                           </top>
@@ -57,7 +129,45 @@
               <children>
                 <BorderPane prefHeight="500.0" prefWidth="1150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <center>
-                    <AnchorPane prefHeight="470.0" prefWidth="200.0" />
+                    <AnchorPane prefHeight="470.0" prefWidth="200.0">
+                      <children>
+                        <BorderPane prefHeight="469.0" prefWidth="1149.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <bottom>
+                            <AnchorPane prefHeight="50.0" prefWidth="800.0">
+                              <children>
+                                <HBox layoutX="631.0" layoutY="14.0" prefHeight="30.0" prefWidth="185.0" spacing="15.0">
+                                  <children>
+                                    <Button id="editBtn" mnemonicParsing="false" onAction="#edit" text="Редактировать" />
+                                    <Button id="deleteBtn" mnemonicParsing="false" onAction="#delete" text="Удалить" />
+                                  </children>
+                                </HBox>
+                              </children>
+                            </AnchorPane>
+                          </bottom>
+                          <center>
+                            <TableView id="costTable" onMouseClicked="#correctBtns" prefHeight="370.0" prefWidth="800.0">
+                              <columns>
+                                <TableColumn prefWidth="75.0" text="Название" />
+                                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="91.0" text="Категория" />
+                                <TableColumn prefWidth="75.0" text="Агент" />
+                                <TableColumn prefWidth="75.0" text="Сумма" />
+                                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="76.0" text="Дата" />
+                              </columns>
+                            </TableView>
+                          </center>
+                          <top>
+                            <AnchorPane prefHeight="70.0" prefWidth="800.0">
+                              <children>
+                                <Button id="setFilterBtn" layoutX="443.0" layoutY="36.0" mnemonicParsing="false" onAction="#setFilter" text="Изменить фильтр" />
+                                <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Список расходов" />
+                                <Text layoutX="14.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="common-text" text="Записи отображаются в соответствии с заданным фильтром поиска" />
+                                <Button id="findBtn" layoutX="760.0" layoutY="35.0" mnemonicParsing="false" onAction="#find" text="Найти" />
+                              </children>
+                            </AnchorPane>
+                          </top>
+                        </BorderPane>
+                      </children>
+                    </AnchorPane>
                   </center>
                   <top>
                     <AnchorPane prefHeight="30.0" prefWidth="200.0" styleClass="root-pane">
